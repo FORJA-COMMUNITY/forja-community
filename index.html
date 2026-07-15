@@ -3,347 +3,873 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<meta name="description" content="FORJA COMMUNITY — Bots de Discord de alta performance, infraestrutura robusta e moderação automatizada para servidores de elite." />
-<title>FORJA COMMUNITY — Infraestrutura de Elite para Discord</title>
+<meta name="description" content="FORJA COMMUNITY & CYNOS TITAN — Infraestrutura de bots para Discord de alta performance, automação Pix e hospedagem otimizada." />
+<title>FORJA COMMUNITY — Sistemas & Bots de Elite</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Antonio:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=JetBrains+Mono:wght@400;600;700&family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 /* =========================================================
-   FORJA COMMUNITY — CSS (BEM) — Mobile-first
+   FORJA COMMUNITY / CYNOS TITAN — SISTEMA DE ESTILOS CSS
    ========================================================= */
-:root{
-  --color-bg:#000000;
-  --color-surface:#0a0a0a;
-  --color-surface-2:#111111;
-  --color-graphite:#161616;
-  --color-line:#1f1f1f;
-  --color-text:#f4f4f4;
-  --color-muted:#9a9a9a;
-  --color-accent:#EEDC82;
-  --color-accent-dim:rgba(238,220,130,.15);
-  --color-accent-glow:rgba(238,220,130,.35);
+:root {
+  --color-bg-main: #030303;
+  --color-bg-surface: #0a0a0a;
+  --color-bg-card: #121212;
+  --color-bg-card-hover: #181818;
+  --color-border: #222222;
+  --color-border-active: #8b0000;
+  
+  --color-text-main: #f5f5f5;
+  --color-text-muted: #999999;
+  --color-text-dark: #555555;
 
-  --font-body:'Montserrat',system-ui,sans-serif;
-  --font-display:'Antonio','Bebas Neue',sans-serif;
+  --color-accent-red: #8b0000;
+  --color-accent-bright: #dc143c;
+  --color-accent-glow: rgba(220, 20, 60, 0.35);
+  --color-accent-dim: rgba(139, 0, 0, 0.15);
+  --color-green-success: #00ff88;
 
-  --radius:14px;
-  --radius-sm:8px;
-  --transition:.35s cubic-bezier(.22,.61,.36,1);
-  --container:1200px;
+  --font-sans: 'Montserrat', system-ui, -apple-system, sans-serif;
+  --font-display: 'Cinzel', serif;
+  --font-code: 'JetBrains Mono', monospace;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --container-max-width: 1240px;
 }
 
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
-body{
-  font-family:var(--font-body);
-  background:var(--color-bg);
-  color:var(--color-text);
-  line-height:1.6;
-  font-weight:400;
-  overflow-x:hidden;
-  -webkit-font-smoothing:antialiased;
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
-img{max-width:100%;display:block;height:auto}
-a{color:inherit;text-decoration:none}
-button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
-ul{list-style:none}
 
-/* ---------- Utilities ---------- */
-.container{width:100%;max-width:var(--container);margin:0 auto;padding:0 1.25rem}
-.section{padding:5rem 0;position:relative}
-.section__header{text-align:center;max-width:720px;margin:0 auto 3rem}
-.section__eyebrow{
-  display:inline-block;font-size:.75rem;letter-spacing:.35em;
-  color:var(--color-accent);text-transform:uppercase;margin-bottom:1rem;
-  padding:.4rem .9rem;border:1px solid var(--color-accent-dim);border-radius:100px;
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-bg-main);
+  color: var(--color-text-main);
+  -webkit-text-size-adjust: 100%;
 }
-.section__title{
-  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
-  font-size:clamp(2rem,5vw,3.5rem);line-height:1;letter-spacing:.02em;margin-bottom:1rem;
-}
-.section__title--accent{color:var(--color-accent)}
-.section__lead{color:var(--color-muted);font-size:1rem;max-width:600px;margin:0 auto}
 
-/* Scroll reveal */
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s ease,transform .8s ease}
-.reveal.is-visible{opacity:1;transform:none}
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--color-bg-main); }
+::-webkit-scrollbar-thumb { background: #222222; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--color-accent-bright); }
+
+img { max-width: 100%; display: block; height: auto; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+ul { list-style: none; }
+
+/* Utilitários Globais */
+.container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 1.5rem;
+}
+
+.section {
+  padding: 6rem 0;
+  position: relative;
+}
+
+.section--dark {
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section__header {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 4rem;
+}
+
+.section__eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-code);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  color: var(--color-accent-bright);
+  background: var(--color-accent-dim);
+  padding: 0.4rem 1.1rem;
+  border-radius: 100px;
+  border: 1px solid rgba(220, 20, 60, 0.3);
+  margin-bottom: 1.25rem;
+}
+
+.section__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  font-weight: 900;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.25rem;
+}
+
+.section__title span {
+  color: var(--color-accent-bright);
+  text-shadow: 0 0 25px var(--color-accent-glow);
+}
+
+.section__lead {
+  font-size: 1.05rem;
+  color: var(--color-text-muted);
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* Componentes de Botão */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding: 1rem 2.2rem;
+  border-radius: 100px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  transition: all var(--transition-normal);
+  text-decoration: none;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-accent-red);
+  color: #ffffff;
+  border: 1px solid var(--color-accent-bright);
+  box-shadow: 0 4px 25px var(--color-accent-glow);
+}
+
+.btn--primary:hover {
+  background: var(--color-accent-bright);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 35px rgba(220, 20, 60, 0.6);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-text-main);
+  border: 1px solid var(--color-border);
+}
+
+.btn--outline:hover {
+  border-color: var(--color-accent-bright);
+  color: var(--color-accent-bright);
+  transform: translateY(-3px);
+  background: var(--color-accent-dim);
+}
+
+.btn--block { width: 100%; }
+
+/* Animações de Revelação (Scroll) */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
 /* =========================================================
-   Navbar
+   NAVBAR (CABEÇALHO)
    ========================================================= */
-.navbar{
-  position:fixed;top:0;left:0;right:0;z-index:100;
-  background:rgba(0,0,0,.55);
-  backdrop-filter:blur(16px) saturate(160%);
-  -webkit-backdrop-filter:blur(16px) saturate(160%);
-  border-bottom:1px solid transparent;
-  transition:border-color var(--transition),background var(--transition);
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  z-index: 1000;
+  background: rgba(3, 3, 3, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid transparent;
+  transition: all var(--transition-normal);
 }
-.navbar--scrolled{border-bottom-color:var(--color-line);background:rgba(0,0,0,.8)}
-.navbar__inner{
-  display:flex;align-items:center;justify-content:space-between;
-  height:70px;
-}
-.navbar__logo{
-  font-family:var(--font-display);font-size:1.6rem;letter-spacing:.25em;
-  color:var(--color-text);text-transform:uppercase;font-weight:700;
-}
-.navbar__logo span{color:var(--color-accent)}
-.navbar__menu{display:none;gap:2.25rem;align-items:center}
-.navbar__link{
-  font-size:.85rem;font-weight:500;letter-spacing:.05em;color:var(--color-muted);
-  transition:color var(--transition);position:relative;
-}
-.navbar__link:hover{color:var(--color-accent)}
-.navbar__link::after{
-  content:"";position:absolute;left:0;bottom:-6px;width:0;height:1px;
-  background:var(--color-accent);transition:width var(--transition);
-}
-.navbar__link:hover::after{width:100%}
-.navbar__cta{
-  display:none;padding:.7rem 1.4rem;border:1px solid var(--color-accent);
-  color:var(--color-accent);border-radius:100px;font-size:.8rem;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;transition:all var(--transition);
-}
-.navbar__cta:hover{background:var(--color-accent);color:#000;box-shadow:0 0 20px var(--color-accent-glow)}
-.navbar__burger{
-  display:flex;flex-direction:column;gap:5px;width:28px;height:24px;
-  justify-content:center;align-items:center;z-index:110;
-}
-.navbar__burger span{
-  display:block;width:24px;height:2px;background:var(--color-text);
-  transition:transform var(--transition),opacity var(--transition);
-}
-.navbar__burger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.navbar__burger.is-open span:nth-child(2){opacity:0}
-.navbar__burger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
-.navbar__mobile{
-  position:fixed;inset:0;background:rgba(0,0,0,.97);backdrop-filter:blur(20px);
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  gap:2rem;opacity:0;pointer-events:none;transition:opacity var(--transition);z-index:105;
+.navbar--scrolled {
+  background: rgba(5, 5, 5, 0.95);
+  border-bottom-color: var(--color-border);
+  height: 70px;
 }
-.navbar__mobile.is-open{opacity:1;pointer-events:auto}
-.navbar__mobile .navbar__link{font-size:1.5rem;color:var(--color-text);font-family:var(--font-display);letter-spacing:.15em;text-transform:uppercase}
-.navbar__mobile .navbar__cta{display:inline-block;margin-top:1rem}
 
-@media(min-width:900px){
-  .navbar__menu,.navbar__cta{display:flex}
-  .navbar__burger{display:none}
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.navbar__logo {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: 0.2em;
+  color: var(--color-text-main);
+  text-transform: uppercase;
+}
+
+.navbar__logo span { color: var(--color-accent-bright); }
+
+.navbar__menu {
+  display: none;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.navbar__link {
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-text-muted);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+.navbar__link:hover { color: var(--color-accent-bright); }
+
+.navbar__link::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0;
+  height: 2px;
+  background: var(--color-accent-bright);
+  transition: width var(--transition-fast);
+}
+
+.navbar__link:hover::after { width: 100%; }
+
+.navbar__cta {
+  display: none;
+}
+
+.navbar__burger {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 30px;
+  height: 24px;
+  justify-content: center;
+  align-items: center;
+  z-index: 1100;
+}
+
+.navbar__burger span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--color-text-main);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.navbar__burger.is-open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.navbar__burger.is-open span:nth-child(2) { opacity: 0; }
+.navbar__burger.is-open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.navbar__mobile {
+  position: fixed;
+  inset: 0;
+  background: rgba(3, 3, 3, 0.98);
+  backdrop-filter: blur(20px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+  z-index: 1050;
+}
+
+.navbar__mobile.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.navbar__mobile .navbar__link {
+  font-size: 1.4rem;
+  font-family: var(--font-display);
+  color: var(--color-text-main);
+}
+
+@media (min-width: 900px) {
+  .navbar__menu, .navbar__cta { display: flex; }
+  .navbar__burger { display: none; }
 }
 
 /* =========================================================
-   Hero
+   HERO SECTION
    ========================================================= */
-.hero{
-  min-height:100vh;padding:8rem 0 4rem;
-  display:flex;align-items:center;position:relative;overflow:hidden;
-}
-.hero::before{
-  content:"";position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 60% 40% at 50% 0%,rgba(238,220,130,.08),transparent 60%),
-    radial-gradient(ellipse 40% 30% at 80% 80%,rgba(238,220,130,.04),transparent 70%);
-  pointer-events:none;z-index:0;
-}
-.hero__grid-bg{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(238,220,130,.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(238,220,130,.04) 1px,transparent 1px);
-  background-size:60px 60px;
-  mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-  -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-  pointer-events:none;z-index:0;
-}
-.hero__inner{position:relative;z-index:1;text-align:center;width:100%}
-.hero__banner{
-  max-width:820px;margin:0 auto 2.5rem;border-radius:var(--radius);
-  border:1px solid var(--color-line);overflow:hidden;
-  box-shadow:0 30px 80px -20px rgba(238,220,130,.12);
-}
-.hero__banner img{width:100%;display:block}
-
-/* Ajuste do banner no mobile para não estourar a tela */
-@media (max-width: 600px) {
-  .hero__banner {
-    max-width: 100%;
-  }
+.hero {
+  min-height: 100vh;
+  padding-top: 9rem;
+  padding-bottom: 5rem;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.hero__tag{
-  display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1rem;
-  border:1px solid var(--color-accent-dim);border-radius:100px;
-  font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--color-accent);
-  margin-bottom:1.5rem;
+.hero__glow {
+  position: absolute;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 700px;
+  height: 450px;
+  background: radial-gradient(circle, var(--color-accent-glow) 0%, transparent 70%);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
 }
-.hero__tag::before{content:"";width:6px;height:6px;background:var(--color-accent);border-radius:50%;box-shadow:0 0 10px var(--color-accent)}
-.hero__title{
-  font-family:var(--font-display);font-weight:700;text-transform:uppercase;
-  font-size:clamp(2.5rem,8vw,5.5rem);line-height:.95;letter-spacing:.01em;
-  margin-bottom:1.5rem;
-}
-.hero__title span{color:var(--color-accent)}
-.hero__lead{
-  color:var(--color-muted);font-size:clamp(1rem,1.8vw,1.15rem);
-  max-width:640px;margin:0 auto 2.5rem;
-}
-.hero__cta{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem}
 
-/* Buttons */
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
-  padding:1rem 2rem;font-size:.85rem;font-weight:600;letter-spacing:.15em;
-  text-transform:uppercase;border-radius:100px;transition:all var(--transition);
-  border:1px solid transparent;white-space:nowrap;
+.hero__grid-bg {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(220, 20, 60, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(220, 20, 60, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
 }
-.btn--primary{background:var(--color-accent);color:#0a0a0a}
-.btn--primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px -10px var(--color-accent-glow)}
-.btn--outline{border-color:var(--color-line);color:var(--color-text)}
-.btn--outline:hover{border-color:var(--color-accent);color:var(--color-accent);transform:translateY(-3px)}
-.btn--block{width:100%}
+
+.hero__inner {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+}
+
+.hero__banner-wrapper {
+  max-width: 860px;
+  margin: 0 auto 2.5rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9);
+}
+
+.hero__banner-wrapper img {
+  width: 100%;
+  display: block;
+}
+
+.hero__tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(220, 20, 60, 0.12);
+  border: 1px solid var(--color-accent-bright);
+  padding: 0.5rem 1.3rem;
+  border-radius: 100px;
+  color: var(--color-text-main);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  margin-bottom: 1.5rem;
+}
+
+.hero__tag::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--color-accent-bright);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--color-accent-bright);
+}
+
+.hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 7vw, 5.2rem);
+  font-weight: 900;
+  line-height: 1.02;
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+}
+
+.hero__title span {
+  color: var(--color-accent-bright);
+  text-shadow: 0 0 30px var(--color-accent-glow);
+}
+
+.hero__lead {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--color-text-muted);
+  max-width: 720px;
+  margin: 0 auto 2.5rem;
+}
+
+.hero__actions {
+  display: flex;
+  gap: 1.2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 
 /* =========================================================
-   Stats
+   ESTATÍSTICAS (MÉTRICAS)
    ========================================================= */
-.stats{border-top:1px solid var(--color-line);border-bottom:1px solid var(--color-line);padding:4rem 0;background:var(--color-surface)}
-.stats__grid{display:grid;grid-template-columns:1fr;gap:2.5rem;text-align:center}
-.stats__item{padding:1rem}
-.stats__number{
-  font-family:var(--font-display);font-size:clamp(3rem,7vw,4.5rem);
-  color:var(--color-accent);line-height:1;margin-bottom:.5rem;font-weight:700;
+.stats {
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+  padding: 3.5rem 0;
 }
-.stats__label{
-  font-size:.8rem;letter-spacing:.3em;text-transform:uppercase;color:var(--color-muted);
+
+.stats__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+  text-align: center;
 }
-@media(min-width:768px){.stats__grid{grid-template-columns:repeat(3,1fr)}}
+
+.stats__number {
+  font-family: var(--font-display);
+  font-size: clamp(2.8rem, 5vw, 4rem);
+  font-weight: 900;
+  color: var(--color-accent-bright);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stats__label {
+  font-family: var(--font-code);
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--color-text-muted);
+}
 
 /* =========================================================
-   Features
+   SOLUÇÕES & RECURSOS (FEATURES)
    ========================================================= */
-.features__grid{display:grid;grid-template-columns:1fr;gap:1.5rem}
-.feature{
-  padding:2rem;background:var(--color-surface);border:1px solid var(--color-line);
-  border-radius:var(--radius);transition:all var(--transition);position:relative;overflow:hidden;
+.features__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.8rem;
 }
-.feature::before{
-  content:"";position:absolute;inset:0;background:radial-gradient(circle at top left,var(--color-accent-dim),transparent 60%);
-  opacity:0;transition:opacity var(--transition);pointer-events:none;
+
+.feature-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2.2rem;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
 }
-.feature:hover{transform:translateY(-6px);border-color:var(--color-accent);box-shadow:0 20px 50px -20px var(--color-accent-glow)}
-.feature:hover::before{opacity:1}
-.feature__icon{
-  width:52px;height:52px;display:flex;align-items:center;justify-content:center;
-  background:var(--color-graphite);border:1px solid var(--color-line);
-  border-radius:12px;margin-bottom:1.5rem;color:var(--color-accent);
-  position:relative;z-index:1;
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--color-accent-bright);
+  box-shadow: 0 15px 40px rgba(139, 0, 0, 0.25);
+  background: var(--color-bg-card-hover);
 }
-.feature__icon svg{width:26px;height:26px;stroke:currentColor;fill:none;stroke-width:1.6}
-.feature__title{
-  font-family:var(--font-display);text-transform:uppercase;font-size:1.4rem;
-  letter-spacing:.05em;margin-bottom:.75rem;position:relative;z-index:1;
+
+.feature-card__icon {
+  width: 54px;
+  height: 54px;
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: var(--color-accent-bright);
 }
-.feature__desc{color:var(--color-muted);font-size:.95rem;position:relative;z-index:1}
-@media(min-width:640px){.features__grid{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1000px){.features__grid{grid-template-columns:repeat(3,1fr)}}
+
+.feature-card__icon svg {
+  width: 28px;
+  height: 28px;
+  stroke: currentColor;
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.feature-card__title {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  text-transform: uppercase;
+  margin-bottom: 0.8rem;
+  letter-spacing: 0.05em;
+}
+
+.feature-card__desc {
+  color: var(--color-text-muted);
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
 
 /* =========================================================
-   Pricing
+   TABELA DE PLANOS DE PREÇO (PRICING)
    ========================================================= */
-.pricing__grid{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:stretch}
-.plan{
-  padding:2.5rem 2rem;background:var(--color-surface);border:1px solid var(--color-line);
-  border-radius:var(--radius);display:flex;flex-direction:column;transition:all var(--transition);
-  position:relative;
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  align-items: stretch;
 }
-.plan:hover{transform:translateY(-4px);border-color:var(--color-accent-dim)}
-.plan--featured{
-  background:linear-gradient(180deg,#141207,var(--color-surface));
-  border-color:var(--color-accent);
-  box-shadow:0 25px 60px -20px var(--color-accent-glow);
-  transform:scale(1.02);
+
+.plan-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: 2.5rem 1.8rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  transition: all var(--transition-normal);
 }
-.plan--featured:hover{transform:scale(1.02) translateY(-4px)}
-.plan__badge{
-  position:absolute;top:-12px;left:50%;transform:translateX(-50%);
-  background:var(--color-accent);color:#0a0a0a;
-  padding:.3rem 1rem;border-radius:100px;
-  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;font-weight:700;
+
+.plan-card:hover {
+  border-color: var(--color-accent-bright);
+  transform: translateY(-5px);
 }
-.plan__name{
-  font-family:var(--font-display);text-transform:uppercase;font-size:1.5rem;
-  letter-spacing:.1em;margin-bottom:.5rem;
+
+.plan-card--featured {
+  background: linear-gradient(180deg, rgba(139, 0, 0, 0.18) 0%, var(--color-bg-card) 100%);
+  border-color: var(--color-accent-bright);
+  box-shadow: 0 20px 50px var(--color-accent-glow);
 }
-.plan__desc{color:var(--color-muted);font-size:.85rem;margin-bottom:1.5rem}
-.plan__price{
-  font-family:var(--font-display);font-size:3rem;color:var(--color-accent);
-  line-height:1;margin-bottom:.25rem;
+
+.plan-card__badge {
+  position: absolute;
+  top: -13px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-accent-bright);
+  color: #ffffff;
+  font-family: var(--font-code);
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 0.35rem 1.1rem;
+  border-radius: 100px;
+  letter-spacing: 0.1em;
 }
-.plan__price small{font-size:.9rem;color:var(--color-muted);font-family:var(--font-body);letter-spacing:.05em}
-.plan__period{font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--color-muted);margin-bottom:1.75rem}
-.plan__list{flex:1;margin-bottom:2rem;display:flex;flex-direction:column;gap:.85rem}
-.plan__item{display:flex;gap:.75rem;align-items:flex-start;font-size:.9rem;color:#d4d4d4}
-.plan__check{
-  flex-shrink:0;width:18px;height:18px;color:var(--color-accent);margin-top:2px;
+
+.plan-card__header {
+  margin-bottom: 1.5rem;
 }
-.plan__check svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:2.5}
-@media(min-width:768px){.pricing__grid{grid-template-columns:repeat(3,1fr)}}
+
+.plan-card__name {
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+}
+
+.plan-card__desc {
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  min-height: 42px;
+}
+
+.plan-card__price-box {
+  margin-bottom: 1.25rem;
+}
+
+.plan-card__price {
+  font-family: var(--font-display);
+  font-size: 3.2rem;
+  font-weight: 900;
+  color: var(--color-accent-bright);
+  line-height: 1;
+}
+
+.plan-card__price small {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.plan-card__period {
+  font-family: var(--font-code);
+  font-size: 0.72rem;
+  color: var(--color-green-success);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 0.4rem;
+}
+
+/* Box de Upsell da Hospedagem DIY */
+.hosting-diy-box {
+  background: var(--color-bg-surface);
+  border: 1px dashed var(--color-accent-bright);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.78rem;
+  color: var(--color-text-muted);
+}
+
+.hosting-diy-box strong {
+  color: var(--color-text-main);
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.plan-card__features {
+  list-style: none;
+  margin-bottom: 2rem;
+  flex-grow: 1;
+}
+
+.plan-card__features li {
+  font-size: 0.88rem;
+  color: var(--color-text-main);
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+}
+
+.plan-card__features li::before {
+  content: '✓';
+  color: var(--color-accent-bright);
+  font-weight: bold;
+}
 
 /* =========================================================
-   FAQ
+   CALCULADORA / SIMULADOR INTERATIVO
    ========================================================= */
-.faq{max-width:800px;margin:0 auto}
-.faq__item{
-  border-bottom:1px solid var(--color-line);
+.calculator-card {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 3rem 2rem;
+  max-width: 880px;
+  margin: 0 auto;
 }
-.faq__item:first-child{border-top:1px solid var(--color-line)}
-.faq__question{
-  width:100%;padding:1.5rem 0;display:flex;align-items:center;justify-content:space-between;
-  gap:1rem;font-size:1rem;font-weight:600;text-align:left;text-transform:uppercase;
-  letter-spacing:.05em;font-family:var(--font-display);transition:color var(--transition);
+
+.calc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.2rem;
+  margin: 2.5rem 0;
 }
-.faq__question:hover{color:var(--color-accent)}
-.faq__icon{
-  flex-shrink:0;width:28px;height:28px;border:1px solid var(--color-line);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;position:relative;color:var(--color-accent);
-  transition:transform var(--transition),border-color var(--transition);
+
+.calc-item {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  padding: 1.1rem 1.3rem;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+  user-select: none;
 }
-.faq__icon::before,.faq__icon::after{
-  content:"";position:absolute;background:currentColor;
+
+.calc-item:hover {
+  border-color: rgba(220, 20, 60, 0.5);
 }
-.faq__icon::before{width:10px;height:1.5px}
-.faq__icon::after{width:1.5px;height:10px;transition:transform var(--transition)}
-.faq__item.is-open .faq__icon{border-color:var(--color-accent);transform:rotate(180deg)}
-.faq__item.is-open .faq__icon::after{transform:scaleY(0)}
-.faq__answer{
-  max-height:0;overflow:hidden;transition:max-height .5s ease;
-  color:var(--color-muted);font-size:.95rem;
+
+.calc-item.is-selected {
+  border-color: var(--color-accent-bright);
+  background: var(--color-accent-dim);
 }
-.faq__answer-inner{padding:0 0 1.5rem;max-width:90%}
+
+.calc-item__label {
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.calc-item__price {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  color: var(--color-accent-bright);
+}
+
+.calc-item input {
+  accent-color: var(--color-accent-bright);
+  width: 18px;
+  height: 18px;
+}
+
+.calc-summary {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+}
+
+.calc-summary__title {
+  font-family: var(--font-code);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--color-green-success);
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5rem;
+}
+
+.calc-summary__price {
+  font-family: var(--font-display);
+  font-size: 3.8rem;
+  font-weight: 900;
+  color: var(--color-accent-bright);
+  line-height: 1;
+  margin-bottom: 1.5rem;
+}
 
 /* =========================================================
-   Footer
+   FAQ (PERGUNTAS FREQUENTES)
    ========================================================= */
-.footer{
-  border-top:1px solid var(--color-line);background:var(--color-surface);
-  padding:4rem 0 2rem;text-align:center;
+.faq-list {
+  max-width: 820px;
+  margin: 0 auto;
 }
-.footer__logo{
-  font-family:var(--font-display);font-size:2rem;letter-spacing:.3em;
-  text-transform:uppercase;margin-bottom:1rem;
+
+.faq-item {
+  border-bottom: 1px solid var(--color-border);
 }
-.footer__logo span{color:var(--color-accent)}
-.footer__slogan{
-  color:var(--color-accent);font-family:var(--font-display);letter-spacing:.15em;
-  text-transform:uppercase;font-size:1rem;margin-bottom:1rem;
+
+.faq-item:first-child {
+  border-top: 1px solid var(--color-border);
 }
-.footer__desc{color:var(--color-muted);max-width:500px;margin:0 auto 2rem;font-size:.9rem}
-.footer__bottom{
-  padding-top:2rem;border-top:1px solid var(--color-line);
-  color:var(--color-muted);font-size:.8rem;letter-spacing:.1em;
+
+.faq-button {
+  width: 100%;
+  padding: 1.6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-align: left;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+  letter-spacing: 0.05em;
+  transition: color var(--transition-fast);
+}
+
+.faq-button:hover {
+  color: var(--color-accent-bright);
+}
+
+.faq-icon {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--color-border);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  color: var(--color-accent-bright);
+  transition: all var(--transition-normal);
+}
+
+.faq-icon::before, .faq-icon::after {
+  content: '';
+  position: absolute;
+  background: currentColor;
+}
+
+.faq-icon::before { width: 10px; height: 2px; }
+.faq-icon::after { width: 2px; height: 10px; transition: transform var(--transition-normal); }
+
+.faq-item.is-open .faq-icon {
+  border-color: var(--color-accent-bright);
+  transform: rotate(180deg);
+}
+
+.faq-item.is-open .faq-icon::after {
+  transform: scaleY(0);
+}
+
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  color: var(--color-text-muted);
+  font-size: 0.95rem;
+}
+
+.faq-content__inner {
+  padding: 0 0 1.6rem;
+  line-height: 1.7;
+}
+
+/* =========================================================
+   RODAPÉ (FOOTER)
+   ========================================================= */
+.footer {
+  background: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+  padding: 4.5rem 0 2rem;
+  text-align: center;
+}
+
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 0.6rem;
+}
+
+.footer__logo span { color: var(--color-accent-bright); }
+
+.footer__slogan {
+  color: var(--color-accent-bright);
+  font-family: var(--font-code);
+  font-size: 0.88rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.footer__desc {
+  color: var(--color-text-muted);
+  max-width: 540px;
+  margin: 0 auto 2.5rem;
+  font-size: 0.88rem;
+}
+
+.footer__bottom {
+  padding-top: 2rem;
+  border-top: 1px solid var(--color-border);
+  color: var(--color-text-dark);
+  font-size: 0.8rem;
+  font-family: var(--font-code);
 }
 </style>
 </head>
@@ -352,237 +878,512 @@ ul{list-style:none}
 <header class="navbar" id="navbar">
   <div class="container navbar__inner">
     <a href="#" class="navbar__logo">FOR<span>JA</span></a>
+    
     <nav class="navbar__menu">
       <a href="#solucoes" class="navbar__link">Soluções</a>
-      <a href="#planos" class="navbar__link">Planos</a>
+      <a href="#planos" class="navbar__link">Planos Pix</a>
+      <a href="#calculadora" class="navbar__link">Simulador</a>
       <a href="#faq" class="navbar__link">FAQ</a>
     </nav>
-    <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="navbar__cta">Entrar no Discord</a>
-    <button class="navbar__burger" id="burger" aria-label="Abrir menu">
+
+    <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--primary navbar__cta">
+      Entrar no Discord
+    </a>
+
+    <button class="navbar__burger" id="burger" aria-label="Abrir menu de navegação">
       <span></span><span></span><span></span>
     </button>
   </div>
+
   <div class="navbar__mobile" id="mobileMenu">
     <a href="#solucoes" class="navbar__link">Soluções</a>
-    <a href="#planos" class="navbar__link">Planos</a>
+    <a href="#planos" class="navbar__link">Planos Pix</a>
+    <a href="#calculadora" class="navbar__link">Simulador</a>
     <a href="#faq" class="navbar__link">FAQ</a>
-    <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="navbar__cta">Entrar no Discord</a>
+    <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+      Entrar no Discord
+    </a>
   </div>
 </header>
 
-<section class="hero">
-  <div class="hero__grid-bg"></div>
-  <div class="container hero__inner">
-    <img src="banner.png" alt="FORJA Community — Banner Oficial" class="hero__banner reveal" />
-    <span class="hero__tag reveal">Infraestrutura de Elite</span>
-    <h1 class="hero__title reveal">FORJADO PARA<br><span>DOMINAR</span> O DISCORD</h1>
-    <p class="hero__lead reveal">
-      Bots de alta performance, arquitetura anti-raid e sistemas automatizados de moderação.
-      Construído para servidores que não podem falhar — estabilidade, segurança e escala em cada requisição.
-    </p>
-    <div class="hero__cta reveal">
-      <a href="#planos" class="btn btn--primary">Ver Planos</a>
-      <a href="#solucoes" class="btn btn--outline">Explorar Soluções</a>
-    </div>
-  </div>
-</section>
+<main>
+  <section class="hero">
+    <div class="hero__glow"></div>
+    <div class="hero__grid-bg"></div>
 
-<section class="stats">
-  <div class="container">
-    <div class="stats__grid">
-      <div class="stats__item reveal">
-        <div class="stats__number">99.9%</div>
-        <div class="stats__label">Uptime Garantido</div>
+    <div class="container hero__inner">
+      <div class="hero__banner-wrapper reveal">
+        <img src="banner.png" alt="FORJA Community Banner Oficial" />
       </div>
-      <div class="stats__item reveal">
-        <div class="stats__number">0ms</div>
-        <div class="stats__label">Delay de Resposta</div>
-      </div>
-      <div class="stats__item reveal">
-        <div class="stats__number">24/7</div>
-        <div class="stats__label">Suporte Dedicado</div>
+
+      <span class="hero__tag reveal">⚡ Pagamento Único no Pix — Sem Mensalidades</span>
+
+      <h1 class="hero__title reveal">
+        FORJADO PARA<br><span>DOMINAR</span> O DISCORD
+      </h1>
+
+      <p class="hero__lead reveal">
+        Bots de alta performance desenvolvidos em minutos. Escolha o nível do seu sistema, pague uma única vez via Pix e receba o código pronto para rodar.
+      </p>
+
+      <div class="hero__actions reveal">
+        <a href="#planos" class="btn btn--primary">Ver Tabela de Preços</a>
+        <a href="#calculadora" class="btn btn--outline">Simular Bot Customizado</a>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="section" id="solucoes">
-  <div class="container">
-    <div class="section__header reveal">
-      <span class="section__eyebrow">Soluções</span>
-      <h2 class="section__title">Ecossistema de Bots e <span class="section__title--accent">Automação</span></h2>
-      <p class="section__lead">Soluções modulares para automatizar a gestão do seu servidor, desde o atendimento ao cliente até a monetização.</p>
-    </div>
-
-    <div class="features__grid">
-      <article class="feature reveal"><div class="feature__icon"><svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg></div><h3 class="feature__title">Bots de Tickets</h3><p class="feature__desc">Atendimento 24/7 com filas de triagem inteligentes e encerramento automático de tickets.</p></article>
-      <article class="feature reveal"><div class="feature__icon"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg></div><h3 class="feature__title">Gestão de VIPs & Cargos</h3><p class="feature__desc">Entrega automática de cargos após pagamento, renovações e remoção automática de benefícios.</p></article>
-      <article class="feature reveal"><div class="feature__icon"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg></div><h3 class="feature__title">Segurança & Anti-Raid</h3><p class="feature__desc">Proteção contra spam, captcha de verificação e logs completos de moderação.</p></article>
-      <article class="feature reveal"><div class="feature__icon"><svg viewBox="0 0 24 24"><path d="M12 20v-6M6 20V10M18 20V4"/></svg></div><h3 class="feature__title">Economia & Loja</h3><p class="feature__desc">Integração com Pix e Stripe, moedas virtuais e automação de vendas.</p></article>
-      <article class="feature reveal"><div class="feature__icon"><svg viewBox="0 0 24 24"><path d="M20 7L9 18l-5-5"/></svg></div><h3 class="feature__title">Dashboards de Analytics</h3><p class="feature__desc">Relatórios de crescimento, desempenho e saúde da comunidade.</p></article>
-      <article class="feature reveal"><div class="feature__icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 010 18M3 12h18"/></svg></div><h3 class="feature__title">Integração de Infra</h3><p class="feature__desc">Uptime elevado, estabilidade em nuvem e baixa latência.</p></article>
-    </div>
-  </div>
-</section>
-
-<section class="section" id="planos" style="background:var(--color-surface)">
-  <div class="container">
-    <div class="section__header reveal">
-      <span class="section__eyebrow">Planos</span>
-      <h2 class="section__title">Escolha sua <span class="section__title--accent">forja</span></h2>
-      <p class="section__lead">Preços diretos. Sem taxas ocultas. Sem enrolação.</p>
-    </div>
-
-    <div class="pricing__grid">
-
-      <div class="plan reveal">
-        <h3 class="plan__name">Starter</h3>
-        <p class="plan__desc">Para servidores em ascensão.</p>
-        <div class="plan__price">R$20<small>/único</small></div>
-        <div class="plan__period">Pagamento único</div>
-        <ul class="plan__list">
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Bot de moderação básico</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Sistema de tickets</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Anti-raid essencial</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Suporte via Discord</li>
-        </ul>
-        <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">Contratar</a>
-      </div>
-
-      <div class="plan plan--featured reveal">
-        <span class="plan__badge">Mais Vendido</span>
-        <h3 class="plan__name">Pro</h3>
-        <p class="plan__desc">Para comunidades sérias.</p>
-        <div class="plan__price">R$20<small>/mês</small></div>
-        <div class="plan__period">Recorrente mensal</div>
-        <ul class="plan__list">
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Tudo do plano Starter</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Anti-raid avançado com IA</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Vendas automatizadas (Pix)</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Analytics em tempo real</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Uptime SLA 99.9%</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Suporte prioritário 24/7</li>
-        </ul>
-        <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--block">Assinar Agora</a>
-      </div>
-
-      <div class="plan reveal">
-        <h3 class="plan__name">Custom</h3>
-        <p class="plan__desc">Para operações de alta escala.</p>
-        <div class="plan__price">R$50+<small></small></div>
-        <div class="plan__period">Sob demanda</div>
-        <ul class="plan__list">
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Tudo do plano Pro</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Bot 100% personalizado</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Infraestrutura dedicada</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Integrações via API</li>
-          <li class="plan__item"><span class="plan__check"><svg viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg></span> Gerente de conta dedicado</li>
-        </ul>
-        <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">Solicitar Orçamento</a>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<section class="section" id="faq">
-  <div class="container">
-    <div class="section__header reveal">
-      <span class="section__eyebrow">FAQ</span>
-      <h2 class="section__title">Dúvidas <span class="section__title--accent">frequentes</span></h2>
-    </div>
-
-    <div class="faq reveal">
-      <div class="faq__item">
-        <button class="faq__question">Quanto tempo leva para configurar o bot no meu servidor?<span class="faq__icon"></span></button>
-        <div class="faq__answer"><div class="faq__answer-inner">Após a contratação, a configuração inicial é feita em até 24 horas úteis. Você recebe o bot já operacional, com moderação, tickets e proteção ativos. Personalizações avançadas podem levar de 2 a 5 dias.</div></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question">O sistema realmente aguenta ataques de raid grandes?<span class="faq__icon"></span></button>
-        <div class="faq__answer"><div class="faq__answer-inner">Sim. Nossa arquitetura foi validada em servidores com mais de 500 mil membros durante ataques coordenados. Utilizamos rate-limiting distribuído, análise comportamental e blacklists dinâmicas atualizadas em tempo real.</div></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question">Vocês oferecem suporte em português?<span class="faq__icon"></span></button>
-        <div class="faq__answer"><div class="faq__answer-inner">Sim. Nossa equipe de suporte é 100% brasileira e opera 24 horas por dia, 7 dias por semana, via Discord privado com tempo médio de resposta inferior a 5 minutos nos planos Pro e Custom.</div></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question">Posso cancelar o plano mensal quando quiser?<span class="faq__icon"></span></button>
-        <div class="faq__answer"><div class="faq__answer-inner">Sim, sem multa e sem burocracia. O cancelamento é feito diretamente no painel e sua assinatura permanece ativa até o fim do ciclo já pago.</div></div>
-      </div>
-      <div class="faq__item">
-        <button class="faq__question">O bot integra com sistemas de pagamento?<span class="faq__icon"></span></button>
-        <div class="faq__answer"><div class="faq__answer-inner">Sim. Oferecemos integração nativa com Pix, cartão de crédito e principais gateways brasileiros (Mercado Pago, PagBank, Stripe). Vendas 100% automatizadas, liberação instantânea de cargos e produtos digitais.</div></div>
+  <section class="stats">
+    <div class="container">
+      <div class="stats__grid">
+        <div class="stats__item reveal">
+          <div class="stats__number">100%</div>
+          <div class="stats__label">Código Customizado</div>
+        </div>
+        <div class="stats__item reveal">
+          <div class="stats__number">R$0</div>
+          <div class="stats__label">Custo Operacional</div>
+        </div>
+        <div class="stats__item reveal">
+          <div class="stats__number">24/7</div>
+          <div class="stats__label">Hospedagem DIY Ativa</div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
+
+  <section class="section" id="solucoes">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__eyebrow">Recursos & Modulos</span>
+        <h2 class="section__title">Ecossistema de <span>Automação</span></h2>
+        <p class="section__lead">
+          Soluções arquitetadas para maximizar a eficiência, moderação e faturamento do seu servidor.
+        </p>
+      </div>
+
+      <div class="features__grid">
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 2L3 7v6c0 5 4 9 9 9s9-4 9-9V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
+          </div>
+          <h3 class="feature-card__title">Tickets Inteligentes</h3>
+          <p class="feature-card__desc">
+            Atendimento automatizado com filas de triagem, logs detalhados e salvamento de histórico.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M12 20v-6M6 20V10M18 20V4"/></svg>
+          </div>
+          <h3 class="feature-card__title">Vendas Pix Automáticas</h3>
+          <p class="feature-card__desc">
+            Integração nativa com Mercado Pago e Pix. Pagou, o cargo ou produto digital é entregue na hora.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+          </div>
+          <h3 class="feature-card__title">Anti-Raid & Segurança</h3>
+          <p class="feature-card__desc">
+            Bloqueio contra ataques em massa, captcha de verificação e sistema de banimento inteligente.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 3a15 15 0 010 18M3 12h18"/></svg>
+          </div>
+          <h3 class="feature-card__title">Economia & Leveling</h3>
+          <p class="feature-card__desc">
+            Sistemas de engajamento com moedas virtuais, loja de cargos, daily e ranking de usuários ativos.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/><circle cx="19" cy="18" r="2"/></svg>
+          </div>
+          <h3 class="feature-card__title">Painel de Controle</h3>
+          <p class="feature-card__desc">
+            Comandos executados direto pelo Discord com alteração dinâmica de mensagens e botões.
+          </p>
+        </article>
+
+        <article class="feature-card reveal">
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24"><path d="M20 7L9 18l-5-5"/></svg>
+          </div>
+          <h3 class="feature-card__title">Guia VIP Hospedagem DIY</h3>
+          <p class="feature-card__desc">
+            Aprenda a colocar seu bot no Bot-Hosting/SquareCloud de graça mantendo o serviço online 24/7.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="planos">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__eyebrow">Tabela Oficial</span>
+        <h2 class="section__title">Escolha o <span>Nível do Bot</span></h2>
+        <p class="section__lead">
+          Preços de entrada baixos no Pix. Pague uma vez, receba o código e monte sua operação.
+        </p>
+      </div>
+
+      <div class="pricing-grid">
+        
+        <div class="plan-card reveal">
+          <div class="plan-card__header">
+            <h3 class="plan-card__name">Starter AI</h3>
+            <p class="plan-card__desc">Moderação e organização fundamental para servidores pequenos.</p>
+          </div>
+
+          <div class="plan-card__price-box">
+            <div class="plan-card__price">R$14<small>,90</small></div>
+            <span class="plan-card__period">✔ Pagamento Único no Pix</span>
+          </div>
+
+          <div class="hosting-diy-box">
+            <strong>+ R$ 2,50 (Opcional):</strong>
+            Receba o Guia VIP para hospedar de graça 24/7 no Bot-Hosting.
+          </div>
+
+          <ul class="plan-card__features">
+            <li>Moderação Automatizada</li>
+            <li>Sistema de Tickets por Canal</li>
+            <li>Boas-Vindas & Logs Simples</li>
+            <li>Código Otimizado Prontinho</li>
+          </ul>
+
+          <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">
+            Comprar no Discord
+          </a>
+        </div>
+
+        <div class="plan-card plan-card--featured reveal">
+          <span class="plan-card__badge">Mais Vendido</span>
+          
+          <div class="plan-card__header">
+            <h3 class="plan-card__name">Store Pix AI</h3>
+            <p class="plan-card__desc">Sistema completo de vendas Pix automáticas para lojas no Discord.</p>
+          </div>
+
+          <div class="plan-card__price-box">
+            <div class="plan-card__price">R$34<small>,90</small></div>
+            <span class="plan-card__period">✔ Pagamento Único no Pix</span>
+          </div>
+
+          <div class="hosting-diy-box">
+            <strong>+ R$ 2,50 (Opcional):</strong>
+            Receba o Guia VIP para hospedar de graça 24/7 no Bot-Hosting.
+          </div>
+
+          <ul class="plan-card__features">
+            <li>Tudo do Plano Starter</li>
+            <li>Vendas Pix Automatizadas</li>
+            <li>Entrega Instantânea de Cargos</li>
+            <li>Filtro Anti-Raid Básico</li>
+          </ul>
+
+          <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--block">
+            Garantir Store Pix
+          </a>
+        </div>
+
+        <div class="plan-card reveal">
+          <div class="plan-card__header">
+            <h3 class="plan-card__name">Pro Titan</h3>
+            <p class="plan-card__desc">Para grandes comunidades que exigem engajamento e segurança.</p>
+          </div>
+
+          <div class="plan-card__price-box">
+            <div class="plan-card__price">R$79<small>,90</small></div>
+            <span class="plan-card__period">✔ Pagamento Único no Pix</span>
+          </div>
+
+          <div class="hosting-diy-box">
+            <strong>+ R$ 2,50 (Opcional):</strong>
+            Receba o Guia VIP para hospedar de graça 24/7 no Bot-Hosting.
+          </div>
+
+          <ul class="plan-card__features">
+            <li>Economia & Moeda Virtual</li>
+            <li>Tickets com Histórico HTML</li>
+            <li>Comandos de Painel Avançados</li>
+            <li>Proteção Anti-Raid Titan</li>
+          </ul>
+
+          <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">
+            Comprar Pro Titan
+          </a>
+        </div>
+
+        <div class="plan-card reveal">
+          <div class="plan-card__header">
+            <h3 class="plan-card__name">Custom VIP</h3>
+            <p class="plan-card__desc">Desenvolvimento 100% sob medida para grandes operações.</p>
+          </div>
+
+          <div class="plan-card__price-box">
+            <div class="plan-card__price">R$149<small>,90</small></div>
+            <span class="plan-card__period">✔ Pagamento Único no Pix</span>
+          </div>
+
+          <div class="hosting-diy-box" style="border-color: var(--color-green-success);">
+            <strong style="color: var(--color-green-success);">✔ Guia Incluído:</strong>
+            Tutorial VIP de Hospedagem incluído de graça neste nível.
+          </div>
+
+          <ul class="plan-card__features">
+            <li>Bot 100% Personalizado</li>
+            <li>Nome & Avatar Exclusivos</li>
+            <li>Integração com APIs Externas</li>
+            <li>Código-Fonte Entregue</li>
+          </ul>
+
+          <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--block">
+            Solicitar Projeto
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="calculadora">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__eyebrow">Simulador em Tempo Real</span>
+        <h2 class="section__title">Monte seu <span>Bot Personalizado</span></h2>
+        <p class="section__lead">
+          Selecione as funcionalidades desejadas e veja o preço total Pix instantaneamente.
+        </p>
+      </div>
+
+      <div class="calculator-card reveal">
+        <div class="calc-grid" id="calcGrid">
+          
+          <label class="calc-item is-selected">
+            <div>
+              <div class="calc-item__label">Bot Base (Moderação & Tickets)</div>
+              <div class="calc-item__price">R$ 14,90</div>
+            </div>
+            <input type="checkbox" value="14.90" checked disabled />
+          </label>
+
+          <label class="calc-item">
+            <div>
+              <div class="calc-item__label">Módulo Pix Automático</div>
+              <div class="calc-item__price">+ R$ 20,00</div>
+            </div>
+            <input type="checkbox" value="20.00" class="calc-trigger" />
+          </label>
+
+          <label class="calc-item">
+            <div>
+              <div class="calc-item__label">Sistema de Economia / Levels</div>
+              <div class="calc-item__price">+ R$ 25,00</div>
+            </div>
+            <input type="checkbox" value="25.00" class="calc-trigger" />
+          </label>
+
+          <label class="calc-item">
+            <div>
+              <div class="calc-item__label">Guia VIP Bot-Hosting DIY</div>
+              <div class="calc-item__price">+ R$ 2,50</div>
+            </div>
+            <input type="checkbox" value="2.50" class="calc-trigger" />
+          </label>
+
+        </div>
+
+        <div class="calc-summary">
+          <div class="calc-summary__title">Valor Total (Pagamento Único no Pix)</div>
+          <div class="calc-summary__price" id="calcTotalPrice">R$ 14,90</div>
+          <a href="https://discord.gg/FFnSVTQStB" target="_blank" rel="noopener noreferrer" class="btn btn--primary">
+            Fechar Pedido no Discord
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark" id="faq">
+    <div class="container">
+      <div class="section__header reveal">
+        <span class="section__eyebrow">Dúvidas Frequentes</span>
+        <h2 class="section__title">Perguntas <span>Respondidas</span></h2>
+      </div>
+
+      <div class="faq-list reveal">
+        
+        <div class="faq-item">
+          <button class="faq-button">
+            Como funciona a hospedagem DIY de R$ 2,50?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content__inner">
+              Ao adicionar o Guia VIP DIY por R$ 2,50, você recebe um tutorial passo a passo junto com o arquivo de configuração (.env) pronto. Ensinamos você a subir seu bot de graça em plataformas como Bot-Hosting ou SquareCloud, onde você só clica para renovar o bot sem pagar mensalidades.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-button">
+            Qual o prazo de entrega do meu bot?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content__inner">
+              Como nossos sistemas base utilizam arquitetura automatizada via IA, o código-fonte do bot configurado para o seu servidor é entregue em questão de minutos após a confirmação do pagamento no Pix.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-button">
+            O pagamento é realmente único sem mensalidade?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content__inner">
+              Exatamente! Você paga o valor do bot uma única vez no Pix. Não cobramos mensalidades nem taxas ocultas para manter a licença do seu código.
+            </div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-button">
+            O sistema de vendas Pix precisa de CNPJ?
+            <span class="faq-icon"></span>
+          </button>
+          <div class="faq-content">
+            <div class="faq-content__inner">
+              Não. O bot se integra diretamente com contas do Mercado Pago ou gateways compatíveis utilizando suas chaves de API acessíveis via conta física (CPF).
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer class="footer">
   <div class="container">
     <div class="footer__logo">FOR<span>JA</span></div>
     <div class="footer__slogan">Disciplina é a nossa única linguagem.</div>
-    <p class="footer__desc">Infraestrutura de elite para servidores de Discord que exigem excelência operacional. Construído por engenheiros, para operadores sérios.</p>
-    <div class="footer__bottom">© 2026 FORJA COMMUNITY — Todos os direitos reservados.</div>
+    <p class="footer__desc">
+      Infraestrutura de elite para servidores de Discord que exigem excelência e custo zero de manutenção. Unidade de Elite | Full-stack Arquitetura.
+    </p>
+    <div class="footer__bottom">
+      © 2026 CYNOS TITAN / FORJA COMMUNITY — Todos os direitos reservados.
+    </div>
   </div>
 </footer>
 
 <script>
-/* =========================================================
-   FORJA COMMUNITY — Vanilla JS
-   ========================================================= */
-(function(){
+(function() {
   'use strict';
 
-  /* -------- Navbar scroll state -------- */
+  /* -------- Navbar Scroll Behavior -------- */
   const navbar = document.getElementById('navbar');
-  const onScroll = () => {
-    if(window.scrollY > 20) navbar.classList.add('navbar--scrolled');
-    else navbar.classList.remove('navbar--scrolled');
+  const handleScroll = () => {
+    if (window.scrollY > 30) {
+      navbar.classList.add('navbar--scrolled');
+    } else {
+      navbar.classList.remove('navbar--scrolled');
+    }
   };
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
+  window.addEventListener('scroll', handleScroll, { passive: true });
 
-  /* -------- Mobile menu -------- */
+  /* -------- Mobile Menu Handler -------- */
   const burger = document.getElementById('burger');
   const mobileMenu = document.getElementById('mobileMenu');
-  const toggleMenu = (force) => {
-    const open = typeof force === 'boolean' ? force : !burger.classList.contains('is-open');
-    burger.classList.toggle('is-open', open);
-    mobileMenu.classList.toggle('is-open', open);
-    document.body.style.overflow = open ? 'hidden' : '';
+  
+  const toggleMobileMenu = (forceState) => {
+    const isOpen = typeof forceState === 'boolean' ? forceState : !burger.classList.contains('is-open');
+    burger.classList.toggle('is-open', isOpen);
+    mobileMenu.classList.toggle('is-open', isOpen);
+    document.body.style.overflow = isOpen ? 'hidden' : '';
   };
-  burger.addEventListener('click', () => toggleMenu());
-  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
 
-  /* -------- FAQ accordion -------- */
-  document.querySelectorAll('.faq__item').forEach(item => {
-    const q = item.querySelector('.faq__question');
-    const a = item.querySelector('.faq__answer');
-    q.addEventListener('click', () => {
-      const isOpen = item.classList.toggle('is-open');
-      if(isOpen){
-        a.style.maxHeight = a.scrollHeight + 'px';
+  burger.addEventListener('click', () => toggleMobileMenu());
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => toggleMobileMenu(false));
+  });
+
+  /* -------- Calculadora Interativa de Preços -------- */
+  const calcTriggers = document.querySelectorAll('.calc-trigger');
+  const calcTotalPrice = document.getElementById('calcTotalPrice');
+
+  const updateCalculatorTotal = () => {
+    let currentTotal = 14.90; // Valor Base Starter AI
+
+    calcTriggers.forEach(input => {
+      const parentCard = input.closest('.calc-item');
+      if (input.checked) {
+        currentTotal += parseFloat(input.value);
+        parentCard.classList.add('is-selected');
       } else {
-        a.style.maxHeight = '0px';
+        parentCard.classList.remove('is-selected');
+      }
+    });
+
+    calcTotalPrice.textContent = `R$ ${currentTotal.toFixed(2).replace('.', ',')}`;
+  };
+
+  calcTriggers.forEach(input => {
+    input.addEventListener('change', updateCalculatorTotal);
+  });
+
+  /* -------- Accordion de FAQ -------- */
+  const faqItems = document.querySelectorAll('.faq-item');
+
+  faqItems.forEach(item => {
+    const button = item.querySelector('.faq-button');
+    const content = item.querySelector('.faq-content');
+
+    button.addEventListener('click', () => {
+      const isOpen = item.classList.contains('is-open');
+
+      // Fecha todos os outros itens
+      faqItems.forEach(otherItem => {
+        otherItem.classList.remove('is-open');
+        otherItem.querySelector('.faq-content').style.maxHeight = '0px';
+      });
+
+      if (!isOpen) {
+        item.classList.add('is-open');
+        content.style.maxHeight = content.scrollHeight + 'px';
       }
     });
   });
 
-  /* -------- Scroll reveal (IntersectionObserver) -------- */
-  const reveals = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
-        if(entry.isIntersecting){
-          entry.target.style.transitionDelay = (i % 3) * 80 + 'ms';
+  /* -------- Scroll Reveal via IntersectionObserver -------- */
+  const revealElements = document.querySelectorAll('.reveal');
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, index) => {
+        if (entry.isIntersecting) {
+          entry.target.style.transitionDelay = `${(index % 3) * 0.1}s`;
           entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
+          observer.unobserve(entry.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-    reveals.forEach(el => io.observe(el));
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    revealElements.forEach(el => observer.observe(el));
   } else {
-    reveals.forEach(el => el.classList.add('is-visible'));
+    revealElements.forEach(el => el.classList.add('is-visible'));
   }
 })();
 </script>
